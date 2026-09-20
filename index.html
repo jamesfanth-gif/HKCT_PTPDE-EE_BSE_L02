@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSE L02 — Boilers & Energy Recovery Systems · 鍋爐與熱能回收系統</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🔥 BSE L02 — Boilers & Energy Recovery Systems</h1>
+    <p>鍋爐設備與熱能回收系統 · Lecture 2 · Building Services Engineering</p>
+    <p>25 條選擇題 + 5 條簡答題 · 12 幅 SCADA 動態工程原理圖 · Bilingual</p>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-value" id="timer">90:00</div>
+      <div class="stat-label">Time Left / 剩餘時間</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" id="answeredCount">0/25</div>
+      <div class="stat-label">Answered / 已答</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" id="scoreDisplay">-</div>
+      <div class="stat-label">Score / 分數</div>
+    </div>
+    <div style="width:100%;">
+      <div class="progress-container"><div class="progress-fill" id="progressBar"></div></div>
+    </div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="score-circle" id="scoreCircle"><div class="score-text" id="finalScore">0%</div></div>
+    <div class="result-msg" id="resultMsg">Done!</div>
+    <div class="review-section" id="reviewSection"></div>
+    <div style="margin-top:20px;">
+      <button class="btn btn-secondary" onclick="location.reload()">Restart / 重新開始</button>
+    </div>
+  </div>
+
+  <nav class="tab-nav" id="tabNav">
+    <button class="tab-btn active" onclick="showSection('notes')">📚 Notes 筆記 (含 SCADA 原理圖)</button>
+    <button class="tab-btn" onclick="showSection('part1')">📋 MC (25)</button>
+    <button class="tab-btn" onclick="showSection('part2')">✏️ Short Q (5)</button>
+  </nav>
+
+  <!-- NOTES TAB -->
+  <section id="notesSection" class="section active">
+    <div class="intro-card">
+      <h3>👋 歡迎來到第二講！ / Welcome to Lecture 2!</h3>
+      <p>本課題涵蓋<strong>鍋爐分類（火管/水管/鑄鐵/鋼製）、燃油儲存與日用油箱管路、集中式與分散式供熱權衡、10項鍋爐能效優化</strong>，以及<strong>五大熱能回收系統（熱管換熱器、焓輪、環形雙盤管、廢熱回收冷凝器、可逆與串級熱泵）</strong>[cite: 2]。每個課題均配搭 SCADA 工業級動態原理圖輔助學習！</p>
+    </div>
+
+    <div class="toc">
+      <h3>📑 Table of Contents / 課題目錄</h3>
+      <ol>
+        <li><a href="#t1">Boiler Definition & Cast Iron Sectional Assembly / 鍋爐定義與鑄鐵分片組裝</a></li>
+        <li><a href="#t2">Firing Methods: Fire Tube vs Water Tube / 燃燒方式：火管 vs 水管鍋爐剖面</a></li>
+        <li><a href="#t3">Boiler Operating Controls & Turndown Ratio / 運行控制方式與燃燒器調節比</a></li>
+        <li><a href="#t4">Fuel Storage & Handling Systems / 燃油地上防油堤、地下油罐與日用油箱系統</a></li>
+        <li><a href="#t5">Centralisation vs De-centralisation / 集中式管網 vs 分散式模塊鍋爐佈置</a></li>
+        <li><a href="#t6">Improving Boiler Plant Overall Efficiency / 煙氣廢熱回收（省煤器/預熱器）與系統能效</a></li>
+        <li><a href="#t7">Heat Pipe Heat Exchangers: Phase-Change Cycle / 熱管內部毛細相變循環與三段結構</a></li>
+        <li><a href="#t8">Heat Pipe Exchanger Array & Tilt Angle / 熱管換熱器逆流矩陣、隔板與重力傾角</a></li>
+        <li><a href="#t9">Enthalpy Wheels: Summer & Winter Operation / 焓輪全熱回收與吹洗區防交叉污染</a></li>
+        <li><a href="#t10">Run-Around Coil Heat Recovery / 環形雙盤管跨樓層獨立風管液體循環系統</a></li>
+        <li><a href="#t11">Double-Bundle Heat Reclaim Condenser / 雙束冷凝器冷水機組與供熱盤管水路</a></li>
+        <li><a href="#t12">Heat Pumps, 4-Way Reversing Valve & Cascade System / 四通閥冷暖切換與串級冷暖系統</a></li>
+      </ol>
+    </div>
+
+    <div id="notesContainer"></div>
+  </section>
+
+  <!-- MC TAB -->
+  <section id="part1Section" class="section">
+    <div class="intro-card">
+      <h3>📋 Multiple Choice Questions (25 題選擇題)</h3>
+      <p>涵蓋 Lecture 2 所有工程細節與數值規範[cite: 2]。點擊選項作答，最後按 <strong>Submit MC</strong> 查看詳細中文及英文解說與總成績。</p>
+    </div>
+    <div id="mcContainer"></div>
+    <div class="action-btns">
+      <button class="btn btn-success" onclick="submitMC()">Submit MC / 提交並查看成績與解釋</button>
+    </div>
+  </section>
+
+  <!-- SHORT Q TAB -->
+  <section id="part2Section" class="section">
+    <div class="intro-card">
+      <h3>✏️ Short Answer Questions (5 題簡答題)</h3>
+      <p>包含系統對比、工程計算、故障診斷與系統選型[cite: 2]。請先嘗試自行作答，然後點擊按鈕查看 Model Answer 與 Scoring Tips。</p>
+    </div>
+    <div id="shortContainer"></div>
+    <div class="action-btns">
+      <button class="btn btn-primary" onclick="showAnswers()">Show All Answers / 顯示所有參考答案</button>
+    </div>
+  </section>
+</div>
+
+<button class="to-top" id="toTop" onclick="window.scrollTo({top:0, behavior:'auto'})" title="Back to top">↑</button>
+
+<script src="app.js"></script>
+</body>
+</html>
